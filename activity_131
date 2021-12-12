@@ -1,0 +1,182 @@
+# import turtle/rand mod
+import turtle as trtl
+import random as rand
+import instruction as inst
+
+wn = trtl.Screen()
+drawer = trtl.Turtle()
+tboard = trtl.Turtle()
+t = trtl.Turtle()
+square = trtl.Turtle()
+wn.addshape('trtl.gif')
+
+drawer.shape('trtl.gif')
+
+
+def draw_start(): # drawing the start page (turtle and "start?")
+  drawer.penup()
+  drawer.setposition(-50,-70)
+  drawer.pendown()
+  drawer.color("white")
+  drawer.write("Start?", font=("Arial",20))
+  drawer.penup()
+  drawer.forward(30)
+  drawer.onclick(drawer_clicked)
+  
+def drawer_clicked(x,y): #drawer is clicked function
+  drawer.hideturtle()
+  drawer.clear()
+
+
+inst=trtl.Turtle()
+# initializing the instructions board
+
+def screen_clicked(x,y): #when screen is clicked
+  trtl.onscreenclick(None)
+  inst.clear()
+  inst.hideturtle()
+  game_board()
+  block_placement()
+
+  
+
+def instruction_board(): # the making of the instructions board/page
+  wn.bgcolor("light green")
+  inst.penup()
+  inst.goto(-170,50)
+  inst.pendown()
+  inst.write("Trap the Turtle Instructions", font=("Times new roman",20,"bold"))
+  inst.penup()
+  inst.goto(-273,20)
+  inst.pendown()
+  inst.write("Click the square tiles to construct cubes to (hopefully) trap the turtle", font=("Times new roman",13))
+  inst.penup()
+  inst.right(90)
+  inst.forward(20)
+  inst.left(90)
+  inst.write("Click the turtle gif to start!",font=("Times new roman", 15))
+  trtl.onscreenclick(screen_clicked, 1)
+
+def game_board(): # the making of the game board (checkerboard)
+  loop = 0
+  tboard.showturtle()
+  tboard.penup()
+  tboard.setposition(-150,200)
+  tboard.pendown()
+  tboard.speed(0)
+  while loop < 15:
+    tboard.right(90)
+    tboard.forward(400)
+    tboard.left(90)
+    tboard.forward(20)
+    tboard.left(90)
+    tboard.forward(400)
+    tboard.right(90)
+    loop = loop + 1
+  tboard.right(180)
+  i = 0
+  while i < 10:
+    tboard.forward(300)
+    tboard.left(90)
+    tboard.forward(20)
+    tboard.left(90)
+    tboard.forward(300)
+    tboard.right(90)
+    tboard.forward(20)
+    tboard.right(90)
+    tboard.speed(0)
+    i += 1
+  tboard.hideturtle()
+#block initialization 
+blocker = trtl.Turtle()
+colors = ['blue', 'purple', 'red', 'pink', 'yellow']
+blocker.penup()
+blocker.setpos(-110,40)
+blocker.pencolor("white")
+
+'''def user_square():
+  five = 0
+  square.begin_fill()
+  square.fillcolor(rand.choice(colors))
+  while five < 4:
+    square.forward(20)
+    square.left(90)
+    five = five + 1
+  square.end_fill()'''
+
+def block_placement():# the original blocks on the game board
+  one = 0
+  blocker.begin_fill()
+  blocker.fillcolor(rand.choice(colors))
+  while one < 4:
+    blocker.forward(20)
+    blocker.left(90)
+    one = one + 1
+  blocker.end_fill()
+  blocker.penup()
+  blocker.goto(-10,80)
+  blocker.pendown()
+  two = 0
+  blocker.begin_fill()
+  blocker.fillcolor(rand.choice(colors))
+  while two < 4:
+    blocker.forward(20)
+    blocker.left(90)
+    two = two + 1
+  blocker.end_fill()
+  blocker.penup()
+  blocker.goto(50,20)
+  blocker.pendown()
+  three = 0
+  blocker.begin_fill()
+  blocker.fillcolor(rand.choice(colors))
+  while three < 4:
+    blocker.forward(20)
+    blocker.left(90)
+    three = three + 1
+  blocker.end_fill()
+  blocker.penup()
+  blocker.goto(-30,-40)
+  four = 0
+  blocker.begin_fill()
+  blocker.fillcolor(rand.choice(colors))
+  while four < 4:
+    blocker.forward(20)
+    blocker.left(90)
+    four = four + 1
+  blocker.end_fill()
+  blocker.hideturtle()
+  t.showturtle()
+  square.penup()
+  trtl.onscreenclick(board_clicked)
+def board_clicked(x,y):
+  trtl.onscreenclick(square.goto)
+  if True:
+    box_draw(x,y)
+def box_draw(x,y):
+  square.begin_fill()
+  square.fillcolor(rand.choice(colors))
+  square.circle(15,360,4)
+  square.end_fill()
+
+
+#turtle inizialization
+#t = trtl.Turtle()
+t.hideturtle()
+t.shape("turtle")
+
+#square.ondrag(drag)
+
+
+#def turtle_move():
+  #if square_clicked == True:
+    #t.rand.choice(directions)(rand.randint(degrees))
+
+    
+
+
+# list of functions
+instruction_board()
+draw_start()
+wn.listen()
+wn.mainloop()
