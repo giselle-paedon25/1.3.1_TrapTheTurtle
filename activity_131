@@ -148,11 +148,12 @@ def block_placement():# the original blocks on the game board
   blocker.hideturtle()
   t.showturtle()
   square.penup()
-  trtl.onscreenclick(board_clicked)
+  trtl.onscreenclick(board_clicked) # turtle drawing a square when a random point of the screen is clicked
 def board_clicked(x,y):
-  trtl.onscreenclick(square.goto)
   if True:
-    box_draw(x,y)
+    trtl.onscreenclick(square.goto)
+    while True:
+      box_draw(x,y)
 def box_draw(x,y):
   square.begin_fill()
   square.fillcolor(rand.choice(colors))
